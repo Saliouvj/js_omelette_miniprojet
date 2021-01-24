@@ -121,4 +121,47 @@ for (let i = 0; i < personne.mainDroite[0].contenu.length; i++) {
 // RESTE DE LA L'ARGENT 
 console.log(`Il me reste ${personne.argent} €`);
 
+// RENTRER A LA MAISON 
+personne.seDeplacer(maison)
+console.log(`${personne.nom} est actuellement à la ${personne.lieu}`);
+// INGREDIENT DANS BOL AVEC BOUCLE 
+let taille = personne.mainDroite[0].contenu.length
+for (let i = 0; i < taille; i++) {
+    bol.contenu.push(personne.mainDroite[0].contenu.pop());
+    console.log(`${bol.contenu[i]} a été ajouté dans le bol`);
+}
+console.log(`Contenu de mon bol : ${bol.contenu}`);
 
+// LES INGREDIENTS SONT PLUS DANS LE PANIER 
+console.log(`Contenu de mon panier : ${personne.mainDroite[0].contenu}`);
+// MESSAGE CHAQUE INGREDIENT - RETOURNER A L4EPICERIE POUR LE PANIER 
+personne.seDeplacer(epicerie)
+console.log(`${personne.nom} a oublié de rendre son panier et retourne à l'${personne.lieu}`);
+epicerie.paniers.push(personne.mainDroite.pop())
+// AFFICHER LES MESSAGES
+console.log(`Contenu de ma main : ${personne.mainDroite}`);
+console.log(`Contenu de l'épicerie : ${epicerie.paniers} (paniers)`);
+
+// A LA MAISON
+personne.seDeplacer(maison)
+// AFFICHER LE MESSAGE 
+console.log(`${personne.nom} retourne à la ${personne.lieu} pour continuer l'omelette`);
+// BOUCLE INGREDIENT DANS LE BOL COUPER SI ENTIER 
+for (let i = 0; i < bol.contenu.length; i++) {
+    if (bol.contenu[i].etat == "entier"){
+        personne.couper(bol.contenu[i], couteau)
+        console.log(`${bol.contenu[i]} a été coupé`);
+    }
+}
+console.log(`Voici le contenu de mon bol : ${bol.contenu}`);
+
+// MELANGER CONTENU BOL - MESSAGE NOUVEAU MELANGE 
+bol.melanger("omelette");
+console.log(bol);
+// VIDER BOL DANS POELE 
+poele.contenu.push(bol.contenu.pop())
+console.log(`Contenu de mon bol : ${bol.contenu}`);
+console.log(`Contenu de ma poele : ${poele.contenu}`);
+
+//OMELETTE FAITE 
+poele.cuire()
